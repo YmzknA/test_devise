@@ -28,6 +28,9 @@ ja:
               confirmation: "パスワードが一致しません"
             name:
               blank: "名前を入力してください"
+            current_password:
+              blank: "現在のパスワードを入力してください"
+              invalid: "現在のパスワードが間違っています"
         post:
           attributes:
             title:
