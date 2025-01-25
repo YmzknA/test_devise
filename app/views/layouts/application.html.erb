@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Myapp" %></title>
+    <title><%= content_for(:title) || "本日も張り切って" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
@@ -9,9 +9,16 @@
 
     <%= yield :head %>
 
+    <meta property="og:url" content="https://test-devise.onrender.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="本日も張り切って!" />
+    <meta property="og:description" content="今日も誰かに頑張る宣言しませんか？" />
+    <meta property="og:site_name" content="本日も張り切って！" />
+    <meta property="og:image" content="/ogp.png" />
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <link rel="icon" href="/favicon.ico" type="image/ico">
     <link rel="manifest" href="/manifest.json">
-    <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
