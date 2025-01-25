@@ -21,6 +21,8 @@ class PostsController < ApplicationController
 
   # POST /posts or /posts.json
   def create
+    Rails.logger.info "kokokara!!!!!!!!!!!!!~~~~~~~~~~~~~~~"
+    Rails.logger.info "Post params: #{params}"
     @post = Post.new(post_params)
 
     respond_to do |format|
@@ -65,6 +67,6 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:name)
+      params.require(:post).permit(:name, :option)
     end
 end
