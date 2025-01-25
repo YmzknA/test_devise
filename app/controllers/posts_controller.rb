@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[ show destroy ]
+  before_action :authenticate_user!, only: %i[ create destroy show index ]
 
   # GET /posts or /posts.json
   def index
@@ -26,10 +27,7 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy!
 
-    respond_to do |format|
-      format.html { redirect_to posts_path, status: :see_other, notice: "削除しました" }
-      format.json { head :no_content }
-    end
+    redirect_to posts_path, status: :see_other, notice: "削除しました"
   end
 
   private
@@ -41,6 +39,6 @@ class PostsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def post_params
-    params.require(:post).permit(:name, :option)
+    params.require(:post).permit(:name, :option, :user_id)
   end
 end
