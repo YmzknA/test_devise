@@ -7,17 +7,25 @@
 </div>
 <div id="login-histories" class="flex flex-col items-center gap-6 px-6">
   <% @posts.each do |post| %>
-    <%= link_to post_path(post), class: "animate-ease_in delay-100 bg-white rounded-lg shadow-lg p-5 w-full max-w-sm transition-transform transform hover:translate-y-[-5px] hover:shadow-xl block" do %>
-      <p class="text-base font-medium text-gray-600 mb-1"><%= post.name %>さん</p>
-      <p class="text-lg font-medium text-gray-600 mb-3"><%= post.option == 0 ? "本日も張り切って" : "本日はこの辺で" %></p>
-      <small class="text-sm text-gray-500"><%= post.created_at.in_time_zone('Asia/Tokyo').strftime("%Y-%m-%d %H:%M:%S") %></small>
+    <% if post.option == 0 %>
+      <%= link_to post_path(post), class: "animate-ease_in delay-100 bg-emerald-100 rounded-lg shadow-lg p-5 w-full max-w-sm transition-transform transform hover:translate-y-[-5px] hover:shadow-xl block" do %>
+        <p class="text-3xl font-medium text-gray-600 mb-2"><%= post.name %><span class="text-sm"> さん</span></p>
+        <p class="text-lg font-medium text-gray-600 mb-3 ml-2">本日も張り切って!</p>
+        <small class="text-sm text-gray-500 text-right block"><%= post.created_at.in_time_zone('Asia/Tokyo').strftime("%Y-%m-%d %H:%M:%S") %></small>
+      <% end %>
+    <% else %>
+      <%= link_to post_path(post), class: "animate-ease_in delay-100 bg-blue-100 rounded-lg shadow-lg p-5 w-full max-w-sm transition-transform transform hover:translate-y-[-5px] hover:shadow-xl block" do %>
+        <p class="text-3xl font-medium text-gray-600 mb-2"><%= post.name %><span class="text-sm"> さん</span></p>
+        <p class="text-lg font-medium text-gray-600 mb-3 ml-2">本日はこの辺で</p>
+        <small class="text-sm text-gray-500 text-right block"><%= post.created_at.in_time_zone('Asia/Tokyo').strftime("%Y-%m-%d %H:%M:%S") %></small>
+      <% end %>
     <% end %>
   <% end %>
 </div>
 
 <div class="fixed bottom-4 right-4"> 
   <!-- メインボタン（完全な丸形） -->
-<button id="main-button" class="relative bg-gradient-to-r from-blue-500 to-blue-600 text-white w-28 h-20 rounded-full flex items-center justify-center shadow-lg hover:from-blue-600 hover:to-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 transition-all duration-300">
+<button id="main-button" class="relative bg-gradient-to-r from-green-500 to-green-600 text-white w-28 h-20 rounded-full flex items-center justify-center shadow-lg hover:from-green-600 hover:to-green-700 focus:outline-none focus:ring-4 focus:ring-blue-300 transition-all duration-300">
   <span class="absolute inset-0 bg-white/10 rounded-full blur-lg"></span>
   <span class="z-10 flex items-center space-x-2 whitespace-nowrap">
     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -33,12 +41,12 @@
   <%= button_to "張り切って", posts_path(post:{option: 0, name: current_user.name, user_id: current_user.id}), 
     method: :post, 
     data: { turbo: false }, 
-    class: "bg-green-600 text-white rounded-lg py-2 px-4 shadow-md hover:bg-green-700 focus:outline-none dropdown-item w-full text-center appearance-none" %>
+    class: "bg-emerald-500 text-white rounded-lg py-2 px-4 shadow-md hover:bg-green-700 focus:outline-none dropdown-item w-full text-center appearance-none" %>
   
   <!-- Option 2 -->
   <%= button_to "この辺で終わる", posts_path(post:{option: 1, name: current_user.name, user_id: current_user.id}), 
     method: :post, 
     data: { turbo: false }, 
-    class: "bg-green-600 text-white rounded-lg py-2 px-4 shadow-md hover:bg-green-700 focus:outline-none dropdown-item w-full text-center appearance-none" %>
+    class: "bg-blue-500 text-white rounded-lg py-2 px-4 shadow-md hover:bg-blue-700 focus:outline-none dropdown-item w-full text-center appearance-none" %>
 </div>
 </div>
