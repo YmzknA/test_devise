@@ -1,0 +1,38 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+      post: 投稿
+    attributes:
+      user:
+        email: Eメール
+        password: パスワード
+        password_confirmation: パスワード（確認用）
+        name: 名前
+      post:
+        title: タイトル
+        content: 内容
+        user_id: ユーザーID
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: "Eメールを入力してください"
+              taken: "Eメールはすでに使用されています"
+            password:
+              blank: "パスワードを入力してください"
+              too_short: "パスワードは%{count}文字以上で入力してください"
+            password_confirmation:
+              blank: "パスワード（確認用）を入力してください"
+              confirmation: "パスワードが一致しません"
+            name:
+              blank: "名前を入力してください"
+        post:
+          attributes:
+            title:
+              blank: "タイトルを入力してください"
+            content:
+              blank: "内容を入力してください"
+            user_id:
+              blank: "ユーザーIDを入力してください"
