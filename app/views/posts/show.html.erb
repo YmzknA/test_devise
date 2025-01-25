@@ -1,10 +1,17 @@
+<h1 class="text-2xl font-bold text-center text-gray-700 my-6">投稿の詳細</h1>
+
 <p style="color: green"><%= notice %></p>
+<div id="login-histories" class="flex flex-col items-center gap-6 px-6">
+  <div class="bg-white rounded-lg shadow-lg p-5 w-full max-w-sm transition-transform transform hover:translate-y-[-5px] hover:shadow-xl block">
+    <p class="text-lg font-medium text-gray-700"><%= @post.name%></p>
+    <p class="text-lg font-medium text-gray-600 mb-3"><%= @post.option == 0 ? "本日も張り切って" : "本日はこの辺で" %></p>
+    <p class="text-sm text-gray-500">作成日時: <%= @post.created_at.in_time_zone('Asia/Tokyo').strftime("%Y-%m-%d %H:%M:%S") %></p>
+  </div>
+</div>
+<div class="flex justify-center mt-4">
+  <%= button_to "削除", @post, method: :delete, data: { "turbo-confirm": "本当に削除しますか？" }, class: "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-2" %>
+</div>
 
-<%= render @post %>
-
-<div>
-  <%= link_to "Edit this post", edit_post_path(@post) %> |
-  <%= link_to "Back to posts", posts_path %>
-
-  <%= button_to "Destroy this post", @post, method: :delete %>
+<div class="flex justify-center mt-4">
+  <%= link_to "投稿一覧へ戻る", posts_path %>
 </div>
