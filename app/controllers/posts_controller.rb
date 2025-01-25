@@ -23,10 +23,9 @@ class PostsController < ApplicationController
     end
   end
 
-  # DELETE /posts/1 or /posts/1.json
   def destroy
+    check_user(@post)
     @post.destroy!
-
     redirect_to posts_path, status: :see_other, notice: "削除しました"
   end
 
@@ -40,5 +39,11 @@ class PostsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def post_params
     params.require(:post).permit(:name, :option, :user_id)
+  end
+
+  def check_user(post)
+    if post.user_id != current_user.id
+      redirect_to posts_path, notice: "不正なアクセスです" 
+    end
   end
 end
