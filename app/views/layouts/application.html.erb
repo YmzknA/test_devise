@@ -28,7 +28,7 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
 
-  <body class="kosugi-maru-regular">
+  <body class="kosugi-maru-regular flex flex-col min-h-screen">
     <!-- Navigation Bar -->
     <nav class="bg-white shadow-md">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -37,7 +37,7 @@
 
           <div class="leading-tighter text-2xl font-extrabold tracking-tighter md:text-2xl flex-shrink-0">
             <a href="/" class="bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text text-transparent">
-              本日も張り切って！
+              本日も！
             </a>
           </div>
 
@@ -88,14 +88,11 @@
         <%= alert %>
       </div>
     <% end %>
-    <%= yield %>
-
-    <!-- Tailwind Mobile Menu Toggle Script -->
-    <script>
-      document.getElementById('mobile-menu-button').addEventListener('click', () => {
-        const menu = document.getElementById('mobile-menu');
-        menu.classList.toggle('hidden');
-      });
-    </script>
+    <main class="flex-grow">
+      <%= yield %>
+    </main>
   </body>
+  <footer class="bg-gray-100 text-gray-700 py-2 mt-8 text-center">
+    <p>お問い合わせは<%= link_to "こちら", 'https://x.com/Ym_zknA_61a', class: "underline" %></p>
+  </footer>
 </html>
