@@ -1,7 +1,9 @@
 export function setupPostsShowDelay(mainButtonId, dropdownId) {
   const postsLeft = document.querySelectorAll('#login-histories .ease_in_left');
   const postsRight = document.querySelectorAll('#login-histories .ease_in_right');
-
+  if (postsLeft.length === 0 && postsRight.length === 0) {
+    return;
+  }
   // 初期状態: 要素を占有しつつ見えない状態にする
   postsLeft.forEach(post => {
     post.style.visibility = 'hidden';
