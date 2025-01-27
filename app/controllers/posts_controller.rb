@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[ show destroy ]
-  before_action :authenticate_user!, only: %i[ create destroy show ]
+  before_action :set_post, only: %i[show destroy]
+  before_action :authenticate_user!, only: %i[create destroy show]
 
   def index
     @posts = Post.order(created_at: :desc).limit(20)
@@ -12,7 +12,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
 
     if @post.save
-      redirect_to posts_path, notice: "宣言しました！"
+      redirect_to posts_path, notice: '宣言しました！'
     else
       render :index, status: :unprocessable_entity
     end
@@ -21,7 +21,7 @@ class PostsController < ApplicationController
   def destroy
     check_user(@post)
     @post.destroy!
-    redirect_to posts_path, status: :see_other, notice: "削除しました"
+    redirect_to posts_path, status: :see_other, notice: '削除しました'
   end
 
   private
@@ -35,8 +35,8 @@ class PostsController < ApplicationController
   end
 
   def check_user(post)
-    if post.user_id != current_user.id
-      redirect_to posts_path, notice: "不正なアクセスです" 
-    end
+    return unless post.user_id != current_user.id
+
+    redirect_to posts_path, notice: '不正なアクセスです'
   end
 end
