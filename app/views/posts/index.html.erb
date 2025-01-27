@@ -8,13 +8,13 @@
 <div id="login-histories" class="flex flex-col items-center gap-6 px-6">
   <% @posts.each do |post| %>
     <% if post.option == 0 %>
-      <%= link_to post_path(post), class: "animate-ease_in delay-100 bg-emerald-100 rounded-lg shadow-lg p-5 w-full max-w-sm transition-transform transform hover:translate-y-[-5px] hover:shadow-xl block" do %>
+      <%= link_to post_path(post), class: "ease_in bg-emerald-100 rounded-lg shadow-lg p-5 w-full max-w-sm transition-transform transform hover:translate-y-[-5px] hover:shadow-xl block" do %>
         <p class="text-3xl font-medium text-gray-600 mb-2"><%= post.name %><span class="text-sm"> さん</span></p>
         <p class="text-lg font-medium text-gray-600 mb-3 ml-2">本日も張り切って!</p>
         <small class="text-sm text-gray-500 text-right block"><%= post.created_at.in_time_zone('Asia/Tokyo').strftime("%Y-%m-%d %H:%M:%S") %></small>
       <% end %>
     <% else %>
-      <%= link_to post_path(post), class: "animate-ease_in delay-100 bg-blue-100 rounded-lg shadow-lg p-5 w-full max-w-sm transition-transform transform hover:translate-y-[-5px] hover:shadow-xl block" do %>
+      <%= link_to post_path(post), class: "ease_in bg-blue-100 rounded-lg shadow-lg p-5 w-full max-w-sm transition-transform transform hover:translate-y-[-5px] hover:shadow-xl block" do %>
         <p class="text-3xl font-medium text-gray-600 mb-2"><%= post.name %><span class="text-sm"> さん</span></p>
         <p class="text-lg font-medium text-gray-600 mb-3 ml-2">本日はこの辺で</p>
         <small class="text-sm text-gray-500 text-right block"><%= post.created_at.in_time_zone('Asia/Tokyo').strftime("%Y-%m-%d %H:%M:%S") %></small>
