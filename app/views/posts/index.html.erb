@@ -5,35 +5,65 @@
     </span>
   </h1>
 </div>
-<div id="login-histories" class="flex flex-col items-center gap-6 px-6">
+<div id="login-histories" class="flex flex-col items-center gap-4 px-6">
   <div class="flex items-center w-3/4 mb-4 mx-auto">
     <div class="flex-grow h-px bg-gray-300"></div>
     <span class="px-2 text-sm text-gray-500 whitespace-nowrap">
-      本日は<%= Time.zone.today.strftime("%Y/%m/%d") %>です！
+      本日は<%= Time.zone.today.strftime("%m/%d") %>です！
     </span>
     <div class="flex-grow h-px bg-gray-300"></div>
   </div>
   <% @posts.each do |post| %>
-    <% if @posts.index(post) > 0 && post.created_at.to_date != @posts[@posts.index(post) - 1].created_at.to_date %>
+    <% if @posts.index(post) > 0 && post.created_at.in_time_zone('Asia/Tokyo').strftime("%m/%d") != @posts[@posts.index(post) - 1].created_at.in_time_zone('Asia/Tokyo').strftime("%m/%d") %>
       <div class="flex items-center w-3/4 my-4 mx-auto">
         <div class="flex-grow h-px bg-gray-300"></div>
         <span class="px-2 text-sm text-gray-500 whitespace-nowrap">
-          本日は<%= post.created_at.strftime("%Y/%m/%d") %>です！
+          本日は<%= post.created_at.in_time_zone('Asia/Tokyo').strftime("%m/%d") %>です！
         </span>
         <div class="flex-grow h-px bg-gray-300"></div>
       </div>
     <% end %>
     <% if post.option == 0 %>
-      <%= link_to post_path(post), class: "ease_in bg-emerald-100 rounded-lg shadow-lg p-5 w-full max-w-sm transition-transform transform hover:translate-y-[-5px] hover:shadow-xl block" do %>
-        <p class="text-3xl font-medium text-gray-600 mb-2"><%= post.name %><span class="text-sm"> さん</span></p>
-        <p class="text-lg font-medium text-gray-600 mb-3 ml-2">本日も張り切って!</p>
-        <small class="text-sm text-gray-500 text-right block"><%= post.created_at.in_time_zone('Asia/Tokyo').strftime("%Y-%m-%d %H:%M:%S") %></small>
+      <%= link_to post_path(post), class: "block w-full max-w-sm" do %>
+        <div class="flex items-start">
+          <div class="flex-1">
+            <!-- 名前 -->
+            <p class="text-xl text-gray-600 mb-1"><%= post.name %><span class="text-xs"> さん</span></p>
+            <div class="hover:scale-105 transition-transformi flex w-full">
+              <!-- メッセージ吹き出し -->
+              <div class="relative bg-emerald-100 rounded-2xl p-4 w-full max-w-[80%] inline-block">
+                <!-- 左上の三角形 -->
+                <div class="absolute left-[-15px] top-[8px] w-4 h-4 bg-emerald-100" style="clip-path: polygon(100% 0, 0 0, 100% 100%);"></div>
+                <p class="text-lg font-medium text-gray-600">本日も張り切って!</p>
+              </div>
+            </div>
+            <!-- タイムスタンプ -->
+            <small class="text-xs text-gray-500 block mt-1">
+              <%= post.created_at.in_time_zone('Asia/Tokyo').strftime("%H:%M") %>
+            </small>
+          </div>
+        </div>
       <% end %>
     <% else %>
-      <%= link_to post_path(post), class: "ease_in bg-blue-100 rounded-lg shadow-lg p-5 w-full max-w-sm transition-transform transform hover:translate-y-[-5px] hover:shadow-xl block" do %>
-        <p class="text-3xl font-medium text-gray-600 mb-2"><%= post.name %><span class="text-sm"> さん</span></p>
-        <p class="text-lg font-medium text-gray-600 mb-3 ml-2">本日はこの辺で</p>
-        <small class="text-sm text-gray-500 text-right block"><%= post.created_at.in_time_zone('Asia/Tokyo').strftime("%Y-%m-%d %H:%M:%S") %></small>
+      <%= link_to post_path(post), class: "block w-full max-w-sm" do %>
+        <div class="flex items-start flex-row-reverse space-x-reverse">
+          <div class="flex-1 flex flex-col items-end w-full">
+            <!-- 名前 -->
+            <p class="text-xl text-gray-600 mb-1"><%= post.name %><span class="text-xs"> さん</span></p>
+            <div class="hover:scale-105 transition-transform flex flex-row-reverse w-full">
+              <!-- メッセージ吹き出し -->
+              <div class="relative bg-blue-100 rounded-2xl p-4 w-full max-w-[80%] inline-block">
+                <!-- 右上の三角形 -->
+                <div class="absolute right-[-15px] top-[8px] w-4 h-4 bg-blue-100" style="clip-path: polygon(0 0, 0 100%, 100% 0);"></div>
+                <p class="text-lg font-medium text-gray-600">本日はこの辺で</p>
+              </div>
+            </div>
+            <!-- タイムスタンプ -->
+            <small class="text-xs text-gray-500 block mt-1">
+              <%= post.created_at.in_time_zone('Asia/Tokyo').strftime("%H:%M") %>
+            </small>
+          </div>
+        </div>
       <% end %>
     <% end %>
   <% end %>
