@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[ show destroy ]
-  before_action :authenticate_user!, only: %i[ create destroy show index ]
+  before_action :authenticate_user!, only: %i[ create destroy show ]
 
   def index
     @posts = Post.order(created_at: :desc).limit(20)

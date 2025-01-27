@@ -1,0 +1,20 @@
+      <%= link_to post_path(post), class: "block w-full max-w-sm" do %>
+        <div class="flex items-start">
+          <div class="flex-1">
+            <!-- 名前 -->
+            <p class="text-xl text-gray-600 mb-1"><%= post.name %><span class="text-xs"> さん</span></p>
+            <div class="hover:scale-105 transition-transformi flex w-full ease_in_left">
+              <!-- メッセージ吹き出し -->
+              <div class="relative bg-emerald-100 rounded-2xl p-4 w-full max-w-[80%] inline-block">
+                <!-- 左上の三角形 -->
+                <div class="absolute left-[-15px] top-[8px] w-4 h-4 bg-emerald-100" style="clip-path: polygon(100% 0, 0 0, 100% 100%);"></div>
+                <p class="text-lg font-medium text-gray-600">本日も張り切って!</p>
+              </div>
+            </div>
+            <!-- タイムスタンプ -->
+            <small class="text-xs text-gray-500 block mt-1">
+              <%= post.created_at.in_time_zone('Asia/Tokyo').strftime("%H:%M") %>
+            </small>
+          </div>
+        </div>
+      <% end %>
