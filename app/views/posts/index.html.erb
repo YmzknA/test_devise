@@ -1,98 +1,30 @@
 <div class='pt-5 pb-5 mt-2 text-center md:pb-6'>
-  <h1 class='leading-tighter mb-4 text-3xl font-extrabold tracking-tighter md:text-4xl'>
+  <h1 class='leading-tighter text-3xl font-extrabold tracking-tighter md:text-4xl'>
     <span class='p-2 bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text text-transparent'>
       みんなの宣言!
     </span>
   </h1>
 </div>
 <div id="login-histories" class="flex flex-col items-center gap-4 px-6">
-  <div class="flex items-center w-3/4 mb-4 mx-auto">
-    <div class="flex-grow h-px bg-gray-300"></div>
-    <span class="px-2 text-sm text-gray-500 whitespace-nowrap">
-      本日は<%= Time.zone.today.strftime("%m/%d") %>です！
-    </span>
-    <div class="flex-grow h-px bg-gray-300"></div>
-  </div>
+  <%= render partial: "today_separator_line" %>
   <% @posts.each do |post| %>
     <% if @posts.index(post) > 0 && post.created_at.in_time_zone('Asia/Tokyo').strftime("%m/%d") != @posts[@posts.index(post) - 1].created_at.in_time_zone('Asia/Tokyo').strftime("%m/%d") %>
-      <div class="flex items-center w-3/4 my-4 mx-auto">
-        <div class="flex-grow h-px bg-gray-300"></div>
-        <span class="px-2 text-sm text-gray-500 whitespace-nowrap">
-          本日は<%= post.created_at.in_time_zone('Asia/Tokyo').strftime("%m/%d") %>です！
-        </span>
-        <div class="flex-grow h-px bg-gray-300"></div>
-      </div>
+      <%= render partial: "day_separator_line", locals: { post: post } %>
     <% end %>
     <% if post.option == 0 %>
-      <%= link_to post_path(post), class: "block w-full max-w-sm" do %>
-        <div class="flex items-start">
-          <div class="flex-1">
-            <!-- 名前 -->
-            <p class="text-xl text-gray-600 mb-1"><%= post.name %><span class="text-xs"> さん</span></p>
-            <div class="hover:scale-105 transition-transformi flex w-full">
-              <!-- メッセージ吹き出し -->
-              <div class="relative bg-emerald-100 rounded-2xl p-4 w-full max-w-[80%] inline-block">
-                <!-- 左上の三角形 -->
-                <div class="absolute left-[-15px] top-[8px] w-4 h-4 bg-emerald-100" style="clip-path: polygon(100% 0, 0 0, 100% 100%);"></div>
-                <p class="text-lg font-medium text-gray-600">本日も張り切って!</p>
-              </div>
-            </div>
-            <!-- タイムスタンプ -->
-            <small class="text-xs text-gray-500 block mt-1">
-              <%= post.created_at.in_time_zone('Asia/Tokyo').strftime("%H:%M") %>
-            </small>
-          </div>
-        </div>
-      <% end %>
+      <%= render partial: "ganbaru_post", locals: { post: post } %>
     <% else %>
-      <%= link_to post_path(post), class: "block w-full max-w-sm" do %>
-        <div class="flex items-start flex-row-reverse space-x-reverse">
-          <div class="flex-1 flex flex-col items-end w-full">
-            <!-- 名前 -->
-            <p class="text-xl text-gray-600 mb-1"><%= post.name %><span class="text-xs"> さん</span></p>
-            <div class="hover:scale-105 transition-transform flex flex-row-reverse w-full">
-              <!-- メッセージ吹き出し -->
-              <div class="relative bg-blue-100 rounded-2xl p-4 w-full max-w-[80%] inline-block">
-                <!-- 右上の三角形 -->
-                <div class="absolute right-[-15px] top-[8px] w-4 h-4 bg-blue-100" style="clip-path: polygon(0 0, 0 100%, 100% 0);"></div>
-                <p class="text-lg font-medium text-gray-600">本日はこの辺で</p>
-              </div>
-            </div>
-            <!-- タイムスタンプ -->
-            <small class="text-xs text-gray-500 block mt-1">
-              <%= post.created_at.in_time_zone('Asia/Tokyo').strftime("%H:%M") %>
-            </small>
-          </div>
-        </div>
-      <% end %>
+      <%= render partial: "konohende_post", locals: { post: post } %>
     <% end %>
   <% end %>
 </div>
 
-<div class="fixed bottom-4 right-4"> 
-    <!-- メインボタン（完全な丸形） -->
-  <button id="main-button" class="relative bg-gradient-to-r from-green-500 to-green-600 text-white w-28 h-20 rounded-full flex items-center justify-center shadow-lg hover:from-green-600 hover:to-green-700 focus:outline-none focus:ring-4 focus:ring-blue-300 transition-all duration-300">
-    <span class="absolute inset-0 bg-white/10 rounded-full blur-lg"></span>
-    <span class="z-10 flex items-center space-x-2 whitespace-nowrap">
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M5 12l7-7 7 7"></path>
-      </svg>
-      <span>本日も！</span>
-    </span>
-  </button>
-
-    <!-- ドロップダウンボタン（上方向に表示） -->
-  <div id="dropdown-buttons" class="hidden absolute bottom-full right-0 flex flex-col items-end gap-2 mb-2 w-40">
-    <!-- Option 1 -->
-    <%= button_to "張り切って", posts_path(post:{option: 0, name: current_user.name, user_id: current_user.id}), 
-      method: :post, 
-      data: { turbo: false }, 
-      class: "bg-emerald-500 text-white rounded-lg py-2 px-4 shadow-md hover:bg-green-700 focus:outline-none dropdown-item w-full text-center appearance-none" %>
-    
-    <!-- Option 2 -->
-    <%= button_to "この辺で終わる", posts_path(post:{option: 1, name: current_user.name, user_id: current_user.id}), 
-      method: :post, 
-      data: { turbo: false }, 
-      class: "bg-blue-500 text-white rounded-lg py-2 px-4 shadow-md hover:bg-blue-700 focus:outline-none dropdown-item w-full text-center appearance-none" %>
+<% if user_signed_in? %>
+  <div class="fixed bottom-4 right-4">
+    <%= render partial: "post_button" %>
   </div>
-</div>
+<% else %>
+  <div class="fixed bottom-4 right-4">
+    <%= link_to "ログイン", new_user_session_path, class: "relative bg-gradient-to-r from-green-500 to-green-600 text-white w-28 h-20 rounded-full flex items-center justify-center shadow-lg hover:from-green-600 hover:to-green-700 focus:outline-none focus:ring-4 focus:ring-blue-300 transition-all duration-300" %>
+  </div>
+<% end %>
