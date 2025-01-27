@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, only: %i[ create destroy show index ]
 
   def index
-    @posts = Post.order(created_at: :desc).limit(30)
+    @posts = Post.order(created_at: :desc).limit(20)
   end
 
   def show; end

@@ -6,9 +6,22 @@
   </h1>
 </div>
 <div id="login-histories" class="flex flex-col items-center gap-6 px-6">
+  <div class="flex items-center w-3/4 mb-4 mx-auto">
+    <div class="flex-grow h-px bg-gray-300"></div>
+    <span class="px-2 text-sm text-gray-500 whitespace-nowrap">
+      本日は<%= Time.zone.today.strftime("%Y/%m/%d") %>です！
+    </span>
+    <div class="flex-grow h-px bg-gray-300"></div>
+  </div>
   <% @posts.each do |post| %>
     <% if @posts.index(post) > 0 && post.created_at.to_date != @posts[@posts.index(post) - 1].created_at.to_date %>
-      <div class="w-1/2 border-t-2 border-gray-300"></div>
+      <div class="flex items-center w-3/4 my-4 mx-auto">
+        <div class="flex-grow h-px bg-gray-300"></div>
+        <span class="px-2 text-sm text-gray-500 whitespace-nowrap">
+          本日は<%= post.created_at.strftime("%Y/%m/%d") %>です！
+        </span>
+        <div class="flex-grow h-px bg-gray-300"></div>
+      </div>
     <% end %>
     <% if post.option == 0 %>
       <%= link_to post_path(post), class: "ease_in bg-emerald-100 rounded-lg shadow-lg p-5 w-full max-w-sm transition-transform transform hover:translate-y-[-5px] hover:shadow-xl block" do %>
