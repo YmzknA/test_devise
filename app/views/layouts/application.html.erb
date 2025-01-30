@@ -31,7 +31,7 @@
 
   <body class="kosugi-maru-regular flex flex-col min-h-screen">
     <!-- Navigation Bar -->
-    <nav class="bg-white shadow-md">
+    <nav class="bg-background shadow-md">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-16">
           <!-- Logo -->
@@ -42,19 +42,21 @@
           </div>
           <!-- Desktop Menu -->
           <div class="hidden md:flex space-x-8">
-            <%= link_to "このアプリって？", about_path,class: "text-gray-600 hover:text-gray-800 font-medium" %>
+            <%= link_to "このアプリって？", about_path,class: "text-text hover:text-text/60 font-medium" %>
             <% if user_signed_in? %>
-              <%= link_to "宣言をみる", posts_path, class: "text-gray-600 hover:text-gray-800 font-medium" %> 
+              <%= link_to "宣言をみる", posts_path, class: "text-text hover:text-text/60 font-medium" %> 
               <%= link_to "ユーザー編集", edit_user_registration_path, class: "text-blue-600 hover:text-blue-800 font-medium" %>
               <%= link_to "ログアウト" , destroy_user_session_path, data: { turbo_method: :delete }, class: "text-purple-600 hover:text-red-800 font-medium" %>
             <% else %>
               <%= link_to "ログイン", new_user_session_path, class: "text-blue-600 hover:text-blue-800 font-medium" %>
               <%= link_to "アカウント作成", new_user_registration_path, class: "text-blue-600 hover:text-blue-800 font-medium" %>
             <% end %>
+            <%= render partial: "/darkmode_toggle_button" %>
           </div>
           <!-- Mobile Menu Toggle Button -->
-          <div class="md:hidden flex items-center">
-            <button id="mobile-menu-button" class="text-gray-600 hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-200">
+          <div class="md:hidden flex items-center"> 
+            <%= render partial: "/darkmode_toggle_button" %>
+            <button id="mobile-menu-button" class="text-gray-500 ml-2 hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-200">
               <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
               </svg>
@@ -63,8 +65,8 @@
         </div>
       </div>
       <!-- Mobile Menu -->
-      <div id="mobile-menu" class="md:hidden hidden space-y-1 px-4 pt-2 pb-4 bg-white shadow">
-        <%= link_to "このアプリって？", about_path,class: "block text-gray-600 hover:text-gray-800 font-medium" %>
+      <div id="mobile-menu" class="md:hidden hidden space-y-1 px-4 pt-2 pb-4 bg-background shadow">
+        <%= link_to "このアプリって？", about_path,class: "block text-text hover:text-text/60 font-medium" %>
         <% if user_signed_in? %>
           <%= link_to "宣言をみる", posts_path, class: "block text-gray-600 hover:text-gray-800 font-medium" %> 
           <%= link_to "ログアウト" , destroy_user_session_path, data: { turbo_method: :delete }, class: "block text-purple-600 hover:text-red-800 font-medium" %>
@@ -76,23 +78,23 @@
     </nav>
     <!-- Flash Messages -->
     <% if flash[:notice] %>
-      <div class="p-4 mb-4 text-md text-blue-700 text-center font-bold">
+      <div class="p-4 text-md text-blue-700 text-center font-bold bg-background">
         <%= notice %>
       </div>
     <% end %>
     <% if flash[:alert] %>
-      <div class="p-4 mb-4 text-md text-red-700 text-center font-bold">
+      <div class="p-4 text-md text-red-700 text-center font-bold bg-background">
         <%= alert %>
       </div>
     <% end %>
 
     <!-- Main Content -->
-    <main class="flex-grow">
+    <main class="flex-grow bg-background">
       <%= yield %>
     </main>
   </body>
   <!-- Footer -->
-  <footer class="bg-gray-100 text-gray-700 py-2 mt-8 text-center">
+  <footer class="bg-surface text-text-muted py-2 text-center">
     <p>お問い合わせは<%= link_to "こちら", 'https://x.com/Ym_zknA_61a', class: "underline", target: "_blank" %></p>
   </footer>
 </html>

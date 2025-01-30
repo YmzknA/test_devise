@@ -7,9 +7,17 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        primary: 'rgb(var(--color-primary) / <alpha-value>)',
+        secondary: 'rgb(var(--color-secondary) / <alpha-value>)',
+        background: 'rgb(var(--color-background) / <alpha-value>)',
+        surface: 'rgb(var(--color-surface) / <alpha-value>)',
+        text: 'rgb(var(--color-text) / <alpha-value>)',
+        'text-muted': 'rgb(var(--color-text-muted) / <alpha-value>)'
+      },
       keyframes: {
         'pop-up': {
-          '0%': { 
+          '0%': {
             transform: 'translateY(20px) scale(0.8)',
             opacity: '0'
           },
@@ -23,7 +31,7 @@ module.exports = {
           }
         },
         'hide-up': {
-          '0%': { 
+          '0%': {
             transform: 'translateY(0) scale(1)',
             opacity: '1'
           },
@@ -51,4 +59,5 @@ module.exports = {
   },
   variants: {},
   plugins: [],
+  darkMode: 'class',
 }

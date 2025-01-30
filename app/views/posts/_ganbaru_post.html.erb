@@ -2,7 +2,7 @@
         <div class="flex items-start">
           <div class="flex-1">
             <!-- 名前 -->
-            <p class="text-xl text-gray-600 mb-1"><%= post.name %><span class="text-xs"> さん</span></p>
+            <p class="text-xl text-text-muted mb-1"><%= post.name %><span class="text-xs"> さん</span></p>
             <div class="hover:scale-105 transition-transformi flex w-full ease_in_left">
               <!-- メッセージ吹き出し -->
               <div class="relative bg-emerald-100 rounded-2xl p-4 w-full max-w-[80%] inline-block">
@@ -12,7 +12,7 @@
               </div>
             </div>
             <!-- タイムスタンプ -->
-            <small class="text-xs text-gray-500 block mt-1">
+            <small class="text-xs text-text-muted block mt-1">
               <%= post.created_at.in_time_zone('Asia/Tokyo').strftime("%H:%M") %>
             </small>
           </div>

@@ -1,7 +1,7 @@
   <div class="flex items-center w-3/4 my-4 mx-auto">
-    <div class="flex-grow h-px bg-gray-300"></div>
-    <span class="px-3 text-sm text-gray-500 whitespace-nowrap">
-      本日は<%= Time.zone.today.strftime("%m/%d") %>です！
+    <div class="flex-grow h-px bg-text-muted/60"></div>
+    <span class="px-3 text-sm text-text-muted whitespace-nowrap">
+      本日は<%= Time.zone.today.in_time_zone('Asia/Tokyo').strftime("%m/%d") %>です！
     </span>
-    <div class="flex-grow h-px bg-gray-300"></div>
+    <div class="flex-grow h-px bg-text-muted/60"></div>
   </div>
