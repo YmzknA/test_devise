@@ -17,7 +17,15 @@ document.addEventListener("turbo:load", function() {
 
 document.addEventListener('DOMContentLoaded', () => {
   // システムの設定を確認
-  if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    document.documentElement.classList.add('dark');
-  }
+  // 6:00 - 18:00 はライトモード
+  // 18:00 - 6:00 はダークモード
+  // 日本時間に変換して判定
+  // html に dark または light クラスを追加
+
+  const now = new Date();
+  const hours = now.getHours();
+  const darkMode = hours < 6 || hours >= 18;
+  const html = document.querySelector('html');
+  html.classList.add(darkMode ? 'dark' : 'light');
+
 });
