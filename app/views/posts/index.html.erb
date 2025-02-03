@@ -11,11 +11,7 @@
     <% if @posts.index(post) > 0 && post.created_at.in_time_zone('Asia/Tokyo').strftime("%m/%d") != @posts[@posts.index(post) - 1].created_at.in_time_zone('Asia/Tokyo').strftime("%m/%d") %>
       <%= render partial: "day_separator_line", locals: { post: post } %>
     <% end %>
-    <% if post.option == 0 %>
-      <%= render partial: "ganbaru_post", locals: { post: post } %>
-    <% else %>
-      <%= render partial: "konohende_post", locals: { post: post } %>
-    <% end %>
+    <%= render partial: "posts_show", locals: { post: post }  %>
   <% end %>
 </div>
 

@@ -5,8 +5,10 @@ services:
     environment:
       TZ: Asia/Tokyo
       POSTGRES_PASSWORD: password
+      POSTGRES_DB: 'pg'
+      PGDATA: /var/lib/postgresql/data/pgdata
     volumes:
-      - postgresql_data:/var/lib/postgresql
+      - postgresql_data:/var/lib/postgresql/data
     ports:
       - 5432:5432
     healthcheck:

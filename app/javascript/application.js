@@ -8,8 +8,8 @@ import { setmobileButtonToggleHidden } from "./mobile_button_toggle_hidden"
 import { setupDarkmodeToggle } from "./darkmode_toggle"
 
 document.addEventListener("turbo:load", function() {
-  setupDropdownToggle("main-button", "dropdown-buttons");
-  setupPostsShowDelay("#login-histories .animate-ease_in");
+  setupDropdownToggle();
+  setupPostsShowDelay();
   setmobileButtonToggleHidden();
   setupDarkmodeToggle();
 });
@@ -21,11 +21,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // 18:00 - 6:00 はダークモード
   // 日本時間に変換して判定
   // html に dark または light クラスを追加
-
+  const html = document.querySelector('html');
   const now = new Date();
   const hours = now.getHours();
   const darkMode = hours < 6 || hours >= 18;
-  const html = document.querySelector('html');
   html.classList.add(darkMode ? 'dark' : 'light');
 
 });
