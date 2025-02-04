@@ -1,0 +1,5 @@
+<% if post.option == 0 %>
+  <%= render partial: "posts/ganbaru_post", locals: { post: post } %>
+<% else %>
+  <%= render partial: "posts/konohende_post", locals: { post: post } %>
+<% end %>

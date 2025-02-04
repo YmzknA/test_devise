@@ -1,4 +1,4 @@
-export function setupPostsShowDelay(mainButtonId, dropdownId) {
+export function setupPostsShowDelay() {
   const postsLeft = document.querySelectorAll('#login-histories .ease_in_left');
   const postsRight = document.querySelectorAll('#login-histories .ease_in_right');
   if (postsLeft.length === 0 && postsRight.length === 0) {

@@ -4,6 +4,12 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.order(created_at: :desc).limit(20)
+
+    return unless @posts.present?
+
+    first_post_date = @posts.first.created_at.in_time_zone('Tokyo').to_date
+    today = Time.now.to_date
+    @today_post = (first_post_date == today)
   end
 
   def show; end

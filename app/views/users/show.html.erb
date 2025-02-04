@@ -1,0 +1,46 @@
+<!-- app/views/users/show.html.erb -->
+<div class="pt-5 pb-5 mt-2 text-center md:pb-6">
+  <h1 class="text-3xl text-text md:text-4xl">
+    <%= @user.name %>さんの宣言一覧
+  </h1>
+</div>
+
+<div class="max-w-sm mx-auto bg-surface text-center rounded-xl shadow-md overflow-hidden p-6">
+  <div class="mb-4">
+    <p class="text-text text-3xl">
+        <%= @user.name %>
+    </p>
+  </div>
+  <div class="mb-6">
+    <p class="text-text text-l">
+    <span class="font-bold"><span class="text-secondary">直近の張り切って!</span> :</span>
+      <%= @user_posts.where(option: 0).first.created_at.in_time_zone('Asia/Tokyo').strftime("%Y-%m-%d %H:%M") %>
+    </p>
+  </div>
+  <div class="mb-6">
+    <p class="text-text text-l">
+    <span class="font-bold"><span class="text-primary">直近のこの辺で</span> :</span>
+      <%= @user_posts.where(option: 1).first.created_at.in_time_zone('Asia/Tokyo').strftime("%Y-%m-%d %H:%M") %>
+    </p>
+  </div>
+  <div class="flex justify-center space-x-4">
+    <% if @user == current_user %>
+      <%= link_to 'ユーザー編集', edit_user_registration_path, class: "px-4 py-2 bg-secondary text-white rounded hover:bg-secondary/160 transition-colors" %>
+    <% end %>
+    <%= link_to '一覧に戻る', posts_path, class: "px-4 py-2 bg-gray-300 text-gray-800 rounded hover:bg-gray-400 transition-colors" %>
+  </div>
+</div>
+
+<div id="login-histories" class="flex flex-col items-center px-6 mb-8">
+  <%= render partial: "posts/today_separator_line" %>
+  <% if !@today_post %>
+    <%= render partial: "posts/day_separator_line", locals: { post:@user_posts.first } %>
+  <% end %>
+
+  <% @user_posts.each do |post| %>
+    <% if @user_posts.index(post) > 0 && post.created_at.in_time_zone('Asia/Tokyo').strftime("%m/%d") != @user_posts[@user_posts.index(post) - 1].created_at.in_time_zone('Asia/Tokyo').strftime("%m/%d") %>
+      <%= render partial: "posts/day_separator_line", locals: { post: post } %>
+    <% end %>
+    <%= render partial: "posts/posts_show", locals: { post: post }  %>
+  <% end %>
+</div>

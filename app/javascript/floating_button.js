@@ -1,6 +1,6 @@
-export function setupDropdownToggle(mainButtonId, dropdownId) {
-  const mainButton = document.getElementById(mainButtonId);
-  const dropdownButtons = document.getElementById(dropdownId);
+export function setupDropdownToggle() {
+  const mainButton = document.getElementById("main-button");
+  const dropdownButtons = document.getElementById("dropdown-buttons");
 
   if (mainButton && dropdownButtons) {
     mainButton.addEventListener("click", (event) => {
