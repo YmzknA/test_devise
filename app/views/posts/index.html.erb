@@ -7,6 +7,9 @@
 </div>
 <div id="login-histories" class="flex flex-col items-center px-6 mb-8">
   <%= render partial: "today_separator_line" %>
+  <% if !@today_post %>
+    <%= render partial: "day_separator_line", locals: { post: @posts.first } %>
+  <% end %>
   <% @posts.each do |post| %>
     <% if @posts.index(post) > 0 && post.created_at.in_time_zone('Asia/Tokyo').strftime("%m/%d") != @posts[@posts.index(post) - 1].created_at.in_time_zone('Asia/Tokyo').strftime("%m/%d") %>
       <%= render partial: "day_separator_line", locals: { post: post } %>
