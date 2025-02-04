@@ -1,6 +1,5 @@
-<%= link_to post.name, user_path(post.user), class: "text-text" %>
 <% if post.option == 0 %>
-  <%= render partial: "ganbaru_post", locals: { post: post } %>
+  <%= render partial: "posts/ganbaru_post", locals: { post: post } %>
 <% else %>
-  <%= render partial: "konohende_post", locals: { post: post } %>
+  <%= render partial: "posts/konohende_post", locals: { post: post } %>
 <% end %>

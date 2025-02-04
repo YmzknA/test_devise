@@ -1,20 +1,30 @@
-      <%= link_to post_path(post), class: "block w-full max-w-sm" do %>
-        <div class="flex items-start">
-          <div class="flex-1">
-            <!-- 名前 -->
-            <p class="text-xl text-text-muted mb-1"><%= post.name %><span class="text-xs"> さん</span></p>
-            <div class="hover:scale-105 transition-transformi flex w-full ease_in_left">
-              <!-- メッセージ吹き出し -->
-              <div class="relative bg-emerald-100 rounded-2xl p-4 w-full max-w-[80%] inline-block">
-                <!-- 左上の三角形 -->
-                <div class="absolute left-[-15px] top-[8px] w-4 h-4 bg-emerald-100" style="clip-path: polygon(100% 0, 0 0, 100% 100%);"></div>
-                <p class="text-lg font-medium text-gray-600">本日も張り切って!</p>
-              </div>
-            </div>
-            <!-- タイムスタンプ -->
-            <small class="text-xs text-text-muted block mt-1">
-              <%= post.created_at.in_time_zone('Asia/Tokyo').strftime("%H:%M") %>
-            </small>
-          </div>
+<!-- name -->
+<div class="text-xl text-text-muted block w-full max-w-sm mb-1"> 
+  <div class="flex items-start">
+    <%= link_to user_path(post.user), class: "inline-block" do %>
+      <%= post.user.name %>
+      <span class="text-xs"> さん</span>
+    <% end %>
+  </div>
+</div>
+
+<!-- post -->
+<div class="w-full max-w-sm flex items-start">
+  <%= link_to post_path(post), class: "inline-block w-full max-w-[80%]" do %>
+      <div class="hover:scale-105 transition-transform w-full ease_in_left">
+        <!-- メッセージ吹き出し -->
+        <div class="relative bg-emerald-100 rounded-2xl p-4 w-full inline-block">
+          <!-- 左上の三角形 -->
+          <div class="absolute left-[-15px] top-[8px] w-4 h-4 bg-emerald-100" style="clip-path: polygon(100% 0, 0 0, 100% 100%);"></div>
+          <p class="text-lg font-medium text-gray-600">本日も張り切って!</p>
         </div>
-      <% end %>
+      </div>
+  <% end %>
+</div>
+
+<!-- timestamp -->
+<div class="w-full max-w-sm flex items-start mb-4">
+    <small class="text-xs text-text-muted block mt-1">
+      <%= post.created_at.in_time_zone('Asia/Tokyo').strftime("%H:%M") %>
+    </small>
+</div>

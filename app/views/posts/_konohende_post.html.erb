@@ -1,20 +1,30 @@
-      <%= link_to post_path(post), class: "block w-full max-w-sm" do %>
-        <div class="flex items-start flex-row-reverse space-x-reverse">
-          <div class="flex-1 flex flex-col items-end w-full">
-            <!-- 名前 -->
-            <p class="text-xl text-text-muted mb-1"><%= post.name %><span class="text-xs"> さん</span></p>
-            <div class="hover:scale-105 transition-transform flex flex-row-reverse w-full ease_in_right">
-              <!-- メッセージ吹き出し -->
-              <div class="relative bg-blue-100 rounded-2xl p-4 w-full max-w-[80%] inline-block">
-                <!-- 右上の三角形 -->
-                <div class="absolute right-[-15px] top-[8px] w-4 h-4 bg-blue-100" style="clip-path: polygon(0 0, 0 100%, 100% 0);"></div>
-                <p class="text-lg font-medium text-gray-600">本日はこの辺で</p>
-              </div>
-            </div>
-            <!-- タイムスタンプ -->
-            <small class="text-xs text-text-muted block mt-1">
-              <%= post.created_at.in_time_zone('Asia/Tokyo').strftime("%H:%M") %>
-            </small>
+<div class="text-xl text-text-muted block w-full max-w-sm mb-1"> 
+  <div class="flex items-start flex-row-reverse space-x-reverse">
+    <%= link_to user_path(post.user), class: "inline-block" do %>
+        <%= post.user.name %>
+        <span class="text-xs"> さん</span>
+    <% end %>
+  </div>
+</div>
+
+<div class="w-full max-w-sm flex items-start flex-row-reverse space-x-reverse">
+  <%= link_to post_path(post), class: "inline-block w-full max-w-[80%]" do %>
+        <div class="hover:scale-105 transition-transform w-full ease_in_right">
+          <!-- メッセージ吹き出し -->
+          <div class="relative bg-blue-100 rounded-2xl p-4 w-full">
+            <!-- 右上の三角形 -->
+            <div class="absolute right-[-15px] top-[8px] w-4 h-4 bg-blue-100" style="clip-path: polygon(0 0, 0 100%, 100% 0);"></div>
+            <p class="text-lg font-medium text-gray-600">本日はこの辺で</p>
           </div>
         </div>
-      <% end %>
+  <% end %>
+</div>
+
+<!-- タイムスタンプ -->
+<div class="w-full max-w-sm items-start mb-4">
+  <div class="flex item-start flex-row-reverse space-x-reverse">
+    <small class="text-xs text-text-muted mt-1">
+      <%= post.created_at.in_time_zone('Asia/Tokyo').strftime("%H:%M") %>
+    </small>
+  </div>
+</div>

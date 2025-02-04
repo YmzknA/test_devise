@@ -1,23 +1,27 @@
 <!-- app/views/users/show.html.erb -->
 <div class="pt-5 pb-5 mt-2 text-center md:pb-6">
-  <h1 class="leading-tighter text-3xl font-extrabold tracking-tighter md:text-4xl">
-    <span class="p-2 bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text text-transparent">
+  <h1 class="text-3xl text-text md:text-4xl">
       User Details
-    </span>
   </h1>
 </div>
 
-<div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden p-6">
+<div class="max-w-md mx-auto bg-surface rounded-xl shadow-md overflow-hidden p-6">
   <div class="mb-4">
-    <p class="text-gray-700 text-lg">
-      <span class="font-bold">Name:</span>
+    <p class="text-text text-lg">
+      <span class="font-bold">名前 :</span>
       <%= @user.name %>
     </p>
   </div>
   <div class="mb-6">
-    <p class="text-gray-700 text-lg">
-      <span class="font-bold">Joined at:</span>
-      <%= @user.created_at.strftime("%Y-%m-%d %H:%M") %>
+    <p class="text-text text-lg">
+      <span class="font-bold">直近の張り切って! :</span>
+      <%= @user_posts.where(option: 0).first.created_at.in_time_zone('Asia/Tokyo').strftime("%Y-%m-%d %H:%M") %>
+    </p>
+  </div>
+  <div class="mb-6">
+    <p class="text-text text-lg">
+    <span class="font-bold">直近のこの辺で :</span>
+      <%= @user_posts.where(option: 1).first.created_at.in_time_zone('Asia/Tokyo').strftime("%Y-%m-%d %H:%M") %>
     </p>
   </div>
   <div class="flex justify-center space-x-4">
@@ -26,3 +30,12 @@
   </div>
 </div>
 
+<div id="login-histories" class="flex flex-col items-center px-6 mb-8">
+  <%= render partial: "posts/today_separator_line" %>
+  <% @user_posts.each do |post| %>
+    <% if @user_posts.index(post) > 0 && post.created_at.in_time_zone('Asia/Tokyo').strftime("%m/%d") != @user_posts[@user_posts.index(post) - 1].created_at.in_time_zone('Asia/Tokyo').strftime("%m/%d") %>
+      <%= render partial: "posts/day_separator_line", locals: { post: post } %>
+    <% end %>
+    <%= render partial: "posts/posts_show", locals: { post: post }  %>
+  <% end %>
+</div>
