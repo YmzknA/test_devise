@@ -1,8 +1,12 @@
-  <h1 class="text-2xl font-bold text-center text-gray-700 my-6">投稿の詳細</h1>
+<p style="color: green"><%= notice %></p>
 
-  <p style="color: green"><%= notice %></p>
+<div class="pt-5 pb-5 mt-2 text-center md:pb-6">
+  <h1 class="text-3xl font-bold text-center text-text my-6 md:text-2xl">
+    投稿の詳細
+  </h1>
+</div>
 
-  <div id="login-histories" class="flex flex-col items-center gap-6 px-6">
+  <div id="login-histories" class="flex flex-col items-center gap-6 ">
       <% if @post.option == 0 %>
         <div class="bg-emerald-100 rounded-lg shadow-lg p-5 w-full max-w-sm transition-transform transform block">
           <p class="text-3xl font-medium text-gray-600 mb-2"><%= @post.name %><span class="text-sm"> さん</span></p>
@@ -23,6 +27,6 @@
       <%= button_to "削除", @post, method: :delete, data: { "turbo-confirm": '本当に削除しますか？' }, class: "bg-purple-400 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded ml-2" %>
     </div>
   <% end %>
-  <div class="flex justify-center mt-5">
+  <div class="flex justify-center mt-5 text-text">
     <%= link_to "みんなの宣言一覧へ戻る", posts_path %>
   </div>

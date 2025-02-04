@@ -1,6 +1,6 @@
 <!-- app/views/users/show.html.erb -->
 <div class="pt-5 pb-5 mt-2 text-center md:pb-6">
-  <h1 class="text-3xl text-text md:text-4xl">
+  <h1 class="text-3xl text-text md:text-2xl">
     <%= @user.name %>さんの宣言一覧
   </h1>
 </div>
@@ -14,13 +14,21 @@
   <div class="mb-6">
     <p class="text-text text-l">
     <span class="font-bold"><span class="text-secondary">直近の張り切って!</span> :</span>
-      <%= @user_posts.where(option: 0).first.created_at.in_time_zone('Asia/Tokyo').strftime("%Y-%m-%d %H:%M") %>
+      <% if @user_posts.where(option: 0).first %>
+        <%= @user_posts.where(option: 0).first.created_at.in_time_zone('Asia/Tokyo').strftime("%Y-%m-%d %H:%M") %>
+      <% else %>
+        ---------- --:--
+      <% end %>
     </p>
   </div>
   <div class="mb-6">
     <p class="text-text text-l">
     <span class="font-bold"><span class="text-primary">直近のこの辺で</span> :</span>
-      <%= @user_posts.where(option: 1).first.created_at.in_time_zone('Asia/Tokyo').strftime("%Y-%m-%d %H:%M") %>
+      <% if @user_posts.where(option: 1).first %>
+        <%= @user_posts.where(option: 1).first.created_at.in_time_zone('Asia/Tokyo').strftime("%Y-%m-%d %H:%M") %>
+      <% else %>
+        ---------- --:--
+      <% end %>
     </p>
   </div>
   <div class="flex justify-center space-x-4">
@@ -31,16 +39,22 @@
   </div>
 </div>
 
-<div id="login-histories" class="flex flex-col items-center px-6 mb-8">
-  <%= render partial: "posts/today_separator_line" %>
-  <% if !@today_post %>
-    <%= render partial: "posts/day_separator_line", locals: { post:@user_posts.first } %>
-  <% end %>
-
-  <% @user_posts.each do |post| %>
-    <% if @user_posts.index(post) > 0 && post.created_at.in_time_zone('Asia/Tokyo').strftime("%m/%d") != @user_posts[@user_posts.index(post) - 1].created_at.in_time_zone('Asia/Tokyo').strftime("%m/%d") %>
-      <%= render partial: "posts/day_separator_line", locals: { post: post } %>
+<% if @user_posts.present? %>
+  <div id="login-histories" class="flex flex-col items-center px-6 mb-8">
+    <%= render partial: "posts/today_separator_line" %>
+    <% if !@today_post %>
+      <%= render partial: "posts/day_separator_line", locals: { post:@user_posts.first } %>
     <% end %>
-    <%= render partial: "posts/posts_show", locals: { post: post }  %>
-  <% end %>
-</div>
+
+    <% @user_posts.each do |post| %>
+      <% if @user_posts.index(post) > 0 && post.created_at.in_time_zone('Asia/Tokyo').strftime("%m/%d") != @user_posts[@user_posts.index(post) - 1].created_at.in_time_zone('Asia/Tokyo').strftime("%m/%d") %>
+        <%= render partial: "posts/day_separator_line", locals: { post: post } %>
+      <% end %>
+      <%= render partial: "posts/posts_show", locals: { post: post }  %>
+    <% end %>
+  </div>
+<% else %>
+  <div class="text-center mt-8">
+    <p class="text-text">まだ宣言がありません</p>
+  </div>
+<% end %>

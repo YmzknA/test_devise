@@ -1,9 +1,9 @@
-<div class="text-xl text-text-muted block w-full max-w-sm mb-1 hover:text-text-muted/60"> 
+<div class="text-xl text-text-muted block w-full max-w-sm mb-1"> 
   <div class="flex items-start flex-row-reverse space-x-reverse">
-    <%= link_to user_path(post.user), class: "inline-block" do %>
-        <%= post.user.name %>
-        <span class="text-xs"> さん</span>
-    <% end %>
+    <div>
+      <%= post.user.name %>
+      <span class="text-xs"> さん</span>
+    </div>
   </div>
 </div>
 
