@@ -50,7 +50,7 @@
       <% if @user_posts.index(post) > 0 && post.created_at.in_time_zone('Asia/Tokyo').strftime("%m/%d") != @user_posts[@user_posts.index(post) - 1].created_at.in_time_zone('Asia/Tokyo').strftime("%m/%d") %>
         <%= render partial: "posts/day_separator_line", locals: { post: post } %>
       <% end %>
-      <%= render partial: "posts/posts_show", locals: { post: post }  %>
+      <%= render partial: "posts/post", locals: { post: post }  %>
     <% end %>
   </div>
 <% else %>
