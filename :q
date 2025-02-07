@@ -22,7 +22,7 @@ export function setupPostsShowDelay() {
     indexLeft++;
 
     if (indexLeft < postsLeft.length) {
-      setTimeout(showPostLeft, 300);
+      setTimeout(showPostLeft, 100);
     }
   };
 
@@ -32,7 +32,7 @@ export function setupPostsShowDelay() {
     indexRight++;
 
     if (indexRight < postsRight.length) {
-      setTimeout(showPostRight, 300);
+      setTimeout(showPostRight, 100);
     }
   };
 
