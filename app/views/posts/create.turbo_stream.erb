@@ -1,3 +1,5 @@
-<%# <%= turbo_stream.append "posts" do %> %>
-<%#   <%= render @post %> %>
-<%# <% end %> %>
+<%= turbo_stream.replace "notice" do %>
+  <%= render "/flash_bar" %>
+  <%= render "posts/twitter_share_button", post: @post %>
+<% end %>
+

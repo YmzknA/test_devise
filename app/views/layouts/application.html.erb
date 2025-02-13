@@ -78,17 +78,7 @@
       </div>
     </nav>
     <!-- Flash Messages -->
-    <% if flash[:notice] %>
-      <div class="p-4 text-md text-blue-700 text-center font-bold bg-background">
-        <%= notice %>
-      </div>
-    <% end %>
-    <% if flash[:alert] %>
-      <div class="p-4 text-md text-red-700 text-center font-bold bg-background">
-        <%= alert %>
-      </div>
-    <% end %>
-
+    <%= render "/flash_bar" %>
     <!-- Main Content -->
     <main class="flex-grow bg-background">
       <%= yield %>
