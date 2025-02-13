@@ -17,14 +17,12 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
 
-    respond_to do |format|
-      if @post.save
-        @post.broadcast_prepend_later_to('posts_channel')
-        format.html { redirect_to posts_path, notice: '宣言しました！' }
-        format.turbo_stream { redirect_to posts_path, notice: '宣言しました！' }
-      else
-        format.html { render :index, status: :unprocessable_entity }
-      end
+    if @post.save
+      @post.broadcast_prepend_later_to('posts_channel')
+      @post_content = @post.option == '0' ? '本日も張り切って！' : '本日はこの辺で'
+      flash.now[:notice] = '投稿しました'
+    else
+      render :index, status: :unprocessable_entity
     end
   end
 
