@@ -1,6 +1,6 @@
 export function setupPostsShowDelay() {
-  const postsLeft = document.querySelectorAll('#login-histories .ease_in_left');
-  const postsRight = document.querySelectorAll('#login-histories .ease_in_right');
+  const postsLeft = Array.from(document.querySelectorAll('#login-histories .ease_in_left')).slice(0, 10);
+  const postsRight = Array.from(document.querySelectorAll('#login-histories .ease_in_right')).slice(0, 10);
   if (postsLeft.length === 0 && postsRight.length === 0) {
     return;
   }
@@ -22,7 +22,7 @@ export function setupPostsShowDelay() {
     indexLeft++;
 
     if (indexLeft < postsLeft.length) {
-      setTimeout(showPostLeft, 300);
+      setTimeout(showPostLeft, 200);
     }
   };
 
@@ -32,7 +32,7 @@ export function setupPostsShowDelay() {
     indexRight++;
 
     if (indexRight < postsRight.length) {
-      setTimeout(showPostRight, 300);
+      setTimeout(showPostRight, 200);
     }
   };
 
