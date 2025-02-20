@@ -59,14 +59,14 @@
       </div>
       <!-- Mobile Menu -->
       <div id="mobile-menu" class="md:hidden hidden space-y-1 px-4 pt-2 pb-4 bg-background shadow text-xl">
-        <%= link_to "このアプリって？", about_path,class: "block text-text hover:text-text/60 font-medium" %>
+        <%= link_to "このアプリって？", about_path,class: "block text-text hover:text-text/60 font-medium pb-1" %>
         <% if user_signed_in? %>
-          <%= link_to "宣言をみる", posts_path, class: "block text-text hover:text-text/60 font-medium" %> 
-          <%= link_to "マイページ", user_path(current_user), class: "block text-blue-600 hover:text-blue-800 font-medium" %>
-          <%= link_to "ログアウト" , destroy_user_session_path, data: { turbo_method: :delete }, class: "block text-purple-600 hover:text-red-800 font-medium" %>
+          <%= link_to "宣言をみる", posts_path, class: "block text-text hover:text-text/60 font-medium pb-1" %> 
+          <%= link_to "マイページ", user_path(current_user), class: "block text-blue-600 hover:text-blue-800 font-medium pb-1" %>
+          <%= link_to "ログアウト" , destroy_user_session_path, data: { turbo_method: :delete }, class: "block text-purple-600 hover:text-red-800 font-medium pb-1" %>
         <% else %>
-          <%= link_to "ログイン", new_user_session_path, class: "block text-blue-600 hover:text-blue-800 font-medium" %>
-          <%= link_to "アカウント作成", new_user_registration_path, class: "block text-blue-600 hover:text-blue-800 font-medium" %>
+          <%= link_to "ログイン", new_user_session_path, class: "block text-blue-600 hover:text-blue-800 font-medium pb-1" %>
+          <%= link_to "アカウント作成", new_user_registration_path, class: "block text-blue-600 hover:text-blue-800 font-medium pb-1" %>
         <% end %>
       </div>
     </nav>
