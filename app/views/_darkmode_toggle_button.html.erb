@@ -1,16 +1,14 @@
 <button 
-  id="theme-toggle"
   aria-label="ダークモードを切り替える"
-  class="p-2 rounded-lg bg-surface
-         hover:bg-surface/50
+  class="p-2 rounded-lg bg-background
+         hover:bg-background/50
          transition-colors duration-200 group"
 >
-  <!-- アイコンを含むコンテナ -->
-  <div class="relative w-4 h-4">
+  <div class="relative w-5 h-5">
     <!-- 太陽のアイコン（ライトモード） -->
     <svg 
       xmlns="http://www.w3.org/2000/svg" 
-      class="absolute inset-0 w-4 h-4 text-gray-800 dark:text-gray-200
+      class="absolute inset-0 w-5 h-5 text-gray-800 dark:text-gray-200
              transition-transform duration-200 rotate-0 dark:rotate-90
              opacity-100 dark:opacity-0"
       fill="none" 
@@ -28,7 +26,7 @@
     <!-- 月のアイコン（ダークモード） -->
     <svg 
       xmlns="http://www.w3.org/2000/svg" 
-      class="absolute inset-0 w-4 h-4 text-gray-800 dark:text-gray-200
+      class="absolute inset-0 w-5 h-5 text-gray-800 dark:text-gray-200
              transition-transform duration-200 -rotate-90 dark:rotate-0
              opacity-0 dark:opacity-100"
       fill="none" 
