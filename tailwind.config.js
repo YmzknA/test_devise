@@ -48,10 +48,17 @@ module.exports = {
           '0%': { transform: 'translateX(10px)', opacity: 0 },
           '100%': { opacity: 1 },
         },
+        flashFade: {
+          "0%": { transform: "translateX(180px)", opacity: 0 },
+          "20%": { transform: "translateX(0)", opacity: 1 },
+          "80%": { transform: "translateX(0)", opacity: 1 },
+          "100%": { transform: "translateX(180px)", opacity: 0 },
+        },
       },
       animation: {
         'pop-up': 'pop-up 0.3s ease-out',
         'hide-up': 'hide-up 0.3s ease-out',
+        'flash': 'flashFade 7.0s forwards',
         'ease_in_left': 'ease_in_left 0.5s ease-in-out',
         'ease_in_right': 'ease_in_right 0.5s ease-in-out',
       }
