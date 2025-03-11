@@ -20,8 +20,19 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
     <%= display_meta_tags(default_meta_tags) %>
-  </head>
 
+    <% if current_user.present? %>
+      <!-- Google tag (gtag.js) -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-GD0FQ0EQEE"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-GD0FQ0EQEE');
+      </script>
+    <% end %>
+  </head>
   <body class="kosugi-maru-regular flex flex-col min-h-screen bg-background">
     <!-- Navigation Bar -->
     <nav class="bg-background shadow-md">
