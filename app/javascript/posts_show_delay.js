@@ -1,41 +1,33 @@
 export function setupPostsShowDelay() {
-  const postsLeft = Array.from(document.querySelectorAll('#login-histories .ease_in_left')).slice(0, 10);
-  const postsRight = Array.from(document.querySelectorAll('#login-histories .ease_in_right')).slice(0, 10);
-  if (postsLeft.length === 0 && postsRight.length === 0) {
+  const posts = Array.from(document.querySelectorAll('.posts')).slice(0, 20);
+
+  if (posts.length === 0) {
     return;
   }
-  // 初期状態: 要素を占有しつつ見えない状態にする
-  postsLeft.forEach(post => {
+
+  posts.forEach(post => {
     post.style.visibility = 'hidden';
   });
 
-  postsRight.forEach(post => {
-    post.style.visibility = 'hidden';
-  });
+  let indexpost = 0;
 
-  let indexLeft = 0;
-  let indexRight = 0;
+  const showPost = () => {
+    posts[indexpost].style.visibility = 'visible';
 
-  const showPostLeft = () => {
-    postsLeft[indexLeft].style.visibility = 'visible'; // 表示
-    postsLeft[indexLeft].classList.add('animate-ease_in_left'); // アニメーション
-    indexLeft++;
+    if (posts[indexpost].classList.contains('ease_in_right')) {
+      posts[indexpost].classList.add('animate-ease_in_right');
+    }
+    if (posts[indexpost].classList.contains('ease_in_left')) {
+      posts[indexpost].classList.add('animate-ease_in_left');
+    }
 
-    if (indexLeft < postsLeft.length) {
-      setTimeout(showPostLeft, 200);
+    indexpost++;
+
+    if (indexpost< posts.length) {
+      setTimeout(showPost, 200);
     }
   };
 
-  const showPostRight = () => {
-    postsRight[indexRight].style.visibility = 'visible'; // 表示
-    postsRight[indexRight].classList.add('animate-ease_in_right'); // アニメーション
-    indexRight++;
 
-    if (indexRight < postsRight.length) {
-      setTimeout(showPostRight, 200);
-    }
-  };
-
-  showPostLeft();
-  showPostRight();
+  showPost();
 }
