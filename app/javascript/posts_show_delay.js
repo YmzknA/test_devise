@@ -1,5 +1,5 @@
 export function setupPostsShowDelay() {
-  const posts = Array.from(document.querySelectorAll('.posts')).slice(0, 20);
+  const posts = Array.from(document.querySelectorAll('.post-show')).slice(0, 20);
 
   if (posts.length === 0) {
     return;
