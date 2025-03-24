@@ -49,6 +49,7 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem 'rubocop-rails-omakase', require: false
+  gem 'swimming_fish', '~> 0.1.2'
 end
 
 group :development do
@@ -66,4 +67,3 @@ gem 'devise'
 gem 'devise-i18n'
 gem 'meta-tags'
 gem 'rails-i18n'
-gem 'swimming_fish', '~> 0.1.2'

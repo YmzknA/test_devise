@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, only: %i[create destroy show]
 
   def index
-    @posts = Post.order(created_at: :desc).limit(50)
+    @posts = Post.includes(:user).order(created_at: :desc).limit(50)
 
     return unless @posts.present?
 
