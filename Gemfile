@@ -49,7 +49,7 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem 'rubocop-rails-omakase', require: false
-  gem 'swimming_fish', '~> 0.1.2'
+  gem 'swimming_fish'
 end
 
 group :development do
