@@ -1,7 +1,4 @@
-<% provide(:title, "ユーザー詳細") %>
-
-<!-- app/views/users/show.html.erb -->
-<div class="pt-5 pb-5 mt-2 text-center md:pb-6">
+<div data-title="<%= @user.name %>さんの宣言一覧" class="pt-5 pb-5 mt-2 text-center md:pb-6">
   <h1 class="text-4xl font-extrabold text-text md:text-3xl">
     <%= @user.name %>さんの宣言一覧
   </h1>
