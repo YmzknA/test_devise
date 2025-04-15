@@ -2,7 +2,7 @@ module ApplicationHelper
   def default_meta_tags
     {
       site: '本日も！',
-      title: @title || '本日も！',
+      title: '本日も！',
       reverse: true,
       charset: 'utf-8',
       description: '本日も！は、人から程よく遠いSNSです。今日も頑張る宣言をして、張り切っていきましょう！',
