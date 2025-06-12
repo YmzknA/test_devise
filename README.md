@@ -1,24 +1,28 @@
-# README
+# 本日も！
+*～ほどよく遠いＳＮＳアプリ～*
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サービス概要  
+  「本日も！」は、ほどよく遠いSNSアプリです。ログインして、「本日も張り切って！」「本日はこの辺で」の宣言ボタンを押すことでTLに宣言が流れます。このアプリでSNSから距離をおきつつ、一緒に頑張っている仲間を確認できます。
 
-Things you may want to cover:
+## このサービスへの思い・作りたい理由 
+  自身がSNSが近くにあると集中力が下がってしまうことが課題だと感じてたときに作成したアプリです。
 
-* Ruby version
+## ユーザー層について  
 
-* System dependencies
+- **集中して学習したい**  
+  リプライやいいねが無いので、通知なども気にせず、意識が散りません。
+  
+- **仲間が欲しい人**  
+  投稿した人の名前は見えるので、仲間と一緒に頑張れます。
 
-* Configuration
+## 使用技術（暫定）
 
-* Database creation
+| カテゴリ | 使用技術 |
+| --- | --- |
+| フロントエンド | TailwindCSS |
+| バックエンド | Ruby 3.3.6 / Rails 7.2.2 |
+| データベース | PostgreSQL |
+| 開発環境 | Docker |
+| インフラ | Render |
+| VCS | GitHub |
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
